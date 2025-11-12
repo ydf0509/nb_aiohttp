@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nb_aiohttp"
+version = "1.0"
+description = "更好用的 aiohttp 客户端，支持同步和异步使用。 性能碾压 httpx 和 requests"
+keywords = ["asyncio", "aiohttp", "httpx"]
+authors = [
+    {name = "ydf0509", email = "ydf0509@xxx.com"},
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "typing_extensions>=3.7; python_version < '3.8'",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.14",
+]
+dev = [
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.812",
+]
+
+[project.urls]
+Homepage = "https://github.com/ydf0509/nb_aiohttp"
+Repository = "https://github.com/ydf0509/nb_aiohttp"
+Issues = "https://github.com/ydf0509/nb_aiohttp/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nb_aiohttp*"]
+
+[tool.setuptools.package-data]
+nb_aiohttp = ["py.typed", "contrib/README.md"]
