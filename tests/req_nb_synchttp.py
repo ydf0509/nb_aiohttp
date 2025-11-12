@@ -14,14 +14,14 @@ from nb_libs.system_monitoring import start_all_monitoring_threads,thread_show_p
 urls = ["http://127.0.0.1:8006/aio2","http://127.0.0.1:8007/aio2"] # 防止抱怨是服务端性能不行，两个进程端口，消灭服务端gil
 
 
-nb_sync_http = NbSyncHttpClient(connector_limit=200,).run_forever()
+nb_sync_http = NbSyncHttpClient(connector_limit=200,).run_forever(daemon=True)
 pool = ThreadPoolExecutorShrinkAble(200)
 
 
 requests_ss = requests.Session()
 
 def main():
-    for i in range(200000):
+    for i in range(200001):
         if i%1000==0:
             print(i)
         url = random.choice(urls)

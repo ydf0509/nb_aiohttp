@@ -201,10 +201,18 @@ class NbAioHttpClient():
     #         )
     #     return getattr(self.session, name)
 
-    async def close(self):
-        if self._has_create and self.session and not self.session.closed:
-            await self.session.close()
-            await asyncio.sleep(0.25)
+    async def close(self,sleep_time=0.1):
+        if self._has_create  :
+            try:
+                await self.session.close()
+            except Exception as e:
+                self.logger.error(f"close session failed: {e}")
+            finally:
+                self._has_create = False
+                self.session = None
+                self._create_lock = None
+            await asyncio.sleep(sleep_time)
+            
 
 
     async def __aenter__(self) -> 'NbAioHttpClient':
@@ -213,8 +221,7 @@ class NbAioHttpClient():
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
-        await self.close()
-        self._has_create = False
+        await self.close(0)
 
 
 

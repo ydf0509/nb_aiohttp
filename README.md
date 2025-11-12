@@ -67,7 +67,11 @@ async def func():
 一套代码，两种模式，适配各种应用场景：
 
 - **NbAioHttpClient**: 异步高性能，适合高并发服务
-- **NbSyncHttpClient**: 同步简单调用，适合传统应用、脚本
+- **NbSyncHttpClient**: 同步调用，适合非asyncio编程生态的传统应用、脚本
+
+- **NbAioHttpClient的原理**： 是调用`aiohttp`的`ClientSession`的异步方法 ，但使用方式被大幅简化，支持全局变量创建 NbAioHttpClient
+- **NbSyncHttpClient的原理**： 是通过 `asyncio.run_coroutine_threadsafe` 调用 `NbAioHttpClient` 的异步`request`方法，然后通过 `future.result()` 获取结果,所以本质也是在`loop` 中运行 `aiohttp` ，性能远超 `requests`
+
 
 ### 💪 企业级特性
 

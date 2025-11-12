@@ -20,7 +20,7 @@ if __name__ == '__main__':
         print(nb_resp2.text[:100])
 
         await nbhttp.close()
-        await asyncio.sleep(0)
+
 
 
 
