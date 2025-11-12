@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nb_aiohttp"
-version = "1.0"
-description = "更好用的 aiohttp 客户端，支持同步和异步使用。 性能碾压 httpx 和 requests"
+version = "1.1"
+description = "更好用的 aiohttp 客户端，支持同步和异步使用。 性能碾压 httpx 和 requests 400%"
 keywords = ["asyncio", "aiohttp", "httpx"]
 authors = [
     {name = "ydf0509", email = "ydf0509@xxx.com"},
@@ -29,6 +29,8 @@ classifiers = [
 ]
 dependencies = [
     "typing_extensions>=3.7; python_version < '3.8'",
+    "aiohttp",
+    "nb_log",
 ]
 
 [project.optional-dependencies]

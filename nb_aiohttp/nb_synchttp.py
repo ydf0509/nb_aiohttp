@@ -4,13 +4,20 @@ import threading
 
 
 class NbSyncHttpClient:
+    _lock = threading.Lock()
     def __init__(self, **kwargs):
         self._nbaiohttp = NbAioHttpClient(**kwargs)
         self.loop = asyncio.new_event_loop()
         # asyncio.set_event_loop(self.loop)
+        self._has_run_forever = False
 
     def run_forever(self):
-        threading.Thread(target=self.loop.run_forever).start()
+        if self._has_run_forever:
+            return self
+        with self._lock:
+            if not self._has_run_forever:
+                threading.Thread(target=self.loop.run_forever).start()
+                self._has_run_forever = True
         return self
 
     def request(self, method: str, url: str, **kwargs) -> NbHttpResp:
