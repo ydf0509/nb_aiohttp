@@ -3,7 +3,7 @@
 
 [![pZCRiPe.png](https://s21.ax1x.com/2025/11/13/pZCRiPe.png)](https://imgchr.com/i/pZCRiPe)
 
-### 20.1 实测对比依赖的三方包说明
+### 20.1.1 实测对比依赖的三方包说明
 
 - pip install nb_libs   
 thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，通过当前进程cpu使用率的打印，让你清清楚楚到底是服务端性能不行还是客户端性能不行？让你清清楚楚知道是客户端cpu达到100%了，所以请求次数无法往上突破
@@ -13,6 +13,18 @@ thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，�
 
 - pip install  threadpool_executor_shrink_able
  同步并发池，主要是有界队列，也可以用 concurrent.futures.ThreadPoolExecutor ，但是它是无界队列，。
+
+### 20.1.2 运行 benchmark 说明
+
+- 先启动 benchmark/fastapi_server1.py 和 benchmark/fastapi_server2.py fastapi服务端（启动2个脚本是保障服务端性能不会成为压测瓶颈，自带cpu使用率打印，可以证明。）
+
+- 再逐个测试启动 
+  - benchmark/req_aiohttp.py 
+  - benchmark/req_httpx.py 
+  - benchmark/req_nb_aiohttp.py 
+  - benchmark/req_nb_httpclient.py 
+  - benchmark/req_nb_synchttp.py 
+  - benchmark/req_requests.py
 
 ### 20.2 通过代码实测 benchmark
 

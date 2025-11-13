@@ -10,7 +10,6 @@ class NbSyncHttpClient:
         self.loop = asyncio.new_event_loop()
         # asyncio.set_event_loop(self.loop)
         self._has_run_forever = False
-        self.run_forever(daemon=True)
 
     def run_forever(self,daemon=False):
         if self._has_run_forever:
@@ -22,6 +21,7 @@ class NbSyncHttpClient:
         return self
 
     def request(self, method: str, url: str, **kwargs) -> NbHttpResp:
+        self.run_forever(daemon=True)
         future = asyncio.run_coroutine_threadsafe(self._nbaiohttp.request(method, url, **kwargs), self.loop)
         return future.result()
 

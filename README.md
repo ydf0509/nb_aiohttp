@@ -159,8 +159,7 @@ http = NbSyncHttpClient(
     max_retries=3,
 )
 
-# ⚙️ 启动后台事件循环（仅需调用一次）
-http.run_forever()
+
 
 # 🚀 像使用 requests 一样简单
 resp = http.get('https://api.github.com/events')
@@ -381,8 +380,7 @@ NbSyncHttpClient(**kwargs)  # 参数与 NbAioHttpClient 相同
 #### 6.2.2 主要方法
 
 ```python
-# 启动后台事件循环（必须首先调用）
-http.run_forever()
+
 
 # HTTP 请求方法（同步调用）
 http.get(url, **kwargs) -> NbHttpResp
@@ -511,7 +509,7 @@ async def create_order(user_id, product_id):
 ```python
 from nb_aiohttp import NbSyncHttpClient
 
-http = NbSyncHttpClient().run_forever()
+http = NbSyncHttpClient()
 
 # 在任何同步代码中使用
 def batch_process():
