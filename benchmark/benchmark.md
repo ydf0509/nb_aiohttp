@@ -98,3 +98,9 @@ nb_http_client 性能强悍是因为基于我的 万能对象池 universal_objec
 - aiohttp 性能吊打 httpx
   
 
+### 20.11 有的人不做测试信口开河乱说 python 性能
+
+- 有的人压根不做测试，说 python 每秒可以请求 2万次 http服务，（不启动多进程，只开协程或线程情况下），简直是信口开河，写个benchmark测试很难吗？   
+- python之父要是听到你把python玩得这么厉害，他要尊称你一声亲爹了，让你来做python之爷爷，以后python 内核性能升级靠你了。
+
+- 只要你不用我开发的 nb_http_client ，在单进程情况下，你每秒请求次数破1000都难，还想破20000，离了个大谱。

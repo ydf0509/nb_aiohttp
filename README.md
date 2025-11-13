@@ -10,8 +10,7 @@
 
 *让异步请求像呼吸一样简单*
 
-[特性](#2--核心特性) • [安装](#3--安装) • [快速开始](#4--快速开始) • [性能对比](#5--性能对比) • [API文档](#6--api-文档)
-
+[特性](#2--核心特性) • [安装](#3--安装) • [快速开始](#4--快速开始) • [性能对比](#5--性能对比) • [API文档](#6--api-文档) • [性能实测](#20-各种三方包的http客户端每请求-10000次-http的-耗时)
 ---
 
 </div>
@@ -310,6 +309,7 @@ async def fetch():
 **代码量减少 70%，可读性提升 300%！**
 
 ## 6. 📚 API 文档
+
 
 ### 6.1 NbAioHttpClient (异步客户端)
 
@@ -625,9 +625,7 @@ except Exception as e:
 
 
 
-## 10. 📄 开源协议
 
-本项目采用 [MIT 协议](https://opensource.org/licenses/MIT) 开源。
 
 
 ## 20 各种三方包的http客户端每请求 10000次 http的 耗时
@@ -716,19 +714,27 @@ nb_http_client 性能强悍是因为基于我的 万能对象池 universal_objec
 - httpx使用比aiohttp方便
 - aiohttp 性能吊打 httpx
   
+### 20.11 有的人不做测试信口开河乱说 python 性能
+
+- 有的人压根不做测试，说 python 每秒可以请求 2万次 http服务，（不启动多进程，只开协程或线程情况下），简直是信口开河，写个benchmark测试很难吗？   
+- python之父要是听到你把python玩得这么厉害，他要尊称你一声亲爹了，让你来做python之爷爷，以后python 内核性能升级靠你了。
+
+- 只要你不用我开发的 nb_http_client ，在单进程情况下，你每秒请求次数破1000都难，还想破20000，离了个大谱。
 
 
-
-## 30. 🙏 致谢
+## 31. 🙏 致谢
 
 - 感谢 [aiohttp](https://github.com/aio-libs/aiohttp) 提供了强大的异步 HTTP 引擎
 - 感谢 [nb_log](https://github.com/ydf0509/nb_log) 提供了优秀的日志解决方案
 
-## 40. 📮 联系方式
+## 32. 📮 联系方式
 
 - **GitHub**: [https://github.com/ydf0509/nb_aiohttp](https://github.com/ydf0509/nb_aiohttp)
 - **问题反馈**: [https://github.com/ydf0509/nb_aiohttp/issues](https://github.com/ydf0509/nb_aiohttp/issues)
 
+## 33. 📄 开源协议
+
+本项目采用 [MIT 协议](https://opensource.org/licenses/MIT) 开源。
 
 ---
 
