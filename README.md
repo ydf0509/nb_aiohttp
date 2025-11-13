@@ -663,27 +663,27 @@ thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，�
 第 11000 次 响应时间：  10:37:22 {"message":"欢迎来到aio1 示例 API!"}  
 
 #### 20.2.2 httpx.AsyncClient()
-- 耗时50秒   
+- 耗时50秒    
 第 1000 次 响应时间：  10:44:17 {"message":"欢迎来到aio1 示例 API!"}
 第 11000 次 响应时间：  10:45:07 {"message":"欢迎来到aio1 示例 API!"}
 
 #### 20.2.3 nb_aiohttp.NbAioHttpClient
-- 耗时13秒
+- 耗时13秒   
 第 1000 次 响应时间： 10:58:32 {"message":"欢迎来到aio1 示例 API!"}
 第 11000 次 响应时间： 10:58:45 {"message":"欢迎来到aio1 示例 API!"} 
 
 ### 20.2.4 requests.Session()  
-- 耗时40秒
+- 耗时40秒  
 第 2000 次 响应时间：  10:34:25 {"message":"欢迎来到aio1 示例 API!"}
 第 12000 次 响应时间：  10:35:05 {"message":"欢迎来到aio1 示例 API!"} 
 
 #### 20.2.5 nb_aiohttp.NbSyncHttpClient
-- 耗时 15秒   
+- 耗时 15秒     
 第 20000 次 响应时间：  10:29:20 {"message":"欢迎来到aio1 示例 API!"}   
 第 30000 次 响应时间：  10:29:35 {"message":"欢迎来到aio1 示例 API!"}  
 
 #### 20.2.6 nb_http_client.ObjectPool
-- 耗时4秒  
+- 耗时4秒    
 第 11000 次 响应时间： 11:07:49 {"message":"欢迎来到aio1 示例 API!"} 
 第 21000 次 响应时间： 11:07:53 {"message":"欢迎来到aio1 示例 API!"}
 
