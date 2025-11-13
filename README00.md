@@ -60,8 +60,7 @@ from nb_aiohttp import NbSyncHttpClient
 # 实例化同步客户端
 sync_http = NbSyncHttpClient(timeout=10)
 
-# 在后台启动事件循环线程
-sync_http.run_forever()
+
 
 def main():
     # 发起 GET 请求，用法和 requests 库非常相似
@@ -153,7 +152,6 @@ async def fetch_with_nb_aiohttp():
 同步客户端。
 
 *   `__init__(self, **kwargs)`: 参数与 `NbAioHttpClient` 相同。
-*   `run_forever(self)`: 启动后台事件循环线程。**在使用任何请求方法前必须调用此方法**。
 *   `request(self, method, url, **kwargs)`: 发起一个同步的HTTP请求。
 *   `get(self, url, **kwargs)`: 发起同步GET请求。
 *   `post(self, url, **kwargs)`: 发起同步POST请求。

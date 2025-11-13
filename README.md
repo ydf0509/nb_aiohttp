@@ -42,8 +42,8 @@
 
 ### 2.1 🏆 性能王者
 
-- **异步性能**: 比 `httpx` 快 **5倍**，完全释放 `aiohttp` 的性能潜力
-- **同步性能**: 比 `requests` 快 **4倍**，同步代码也能享受异步性能
+- **异步性能**: 比 `httpx` 快 **4倍**，完全释放 `aiohttp` 的性能潜力
+- **同步性能**: 比 `requests` 快 **3倍**，同步代码也能享受异步性能
 - **海量并发**: 内置连接池管理，轻松应对数万级并发请求
 
 ### 2.2 🎯 极简设计
@@ -250,6 +250,8 @@ await http.options(url)
 
 ## 5. 📊 性能对比
 
+更多benchmark细节见文档第 20 章节
+
 ### 5.1 实测数据
 
 基于真实压测场景（200 并发，20万次请求）：
@@ -265,9 +267,10 @@ await http.options(url)
 
 ### 5.2 性能结论
 
-- 🏆 **异步场景**: `nb_aiohttp` ≈ 原生 `aiohttp` > `httpx` (5倍)
-- 🏆 **同步场景**: `nb_aiohttp` > `httpx` (2倍) > `requests` (4倍)
+- 🏆 **异步场景**: `nb_aiohttp` ≈ 原生 `aiohttp` > `httpx` (4倍)
+- 🏆 **同步场景**: `nb_aiohttp` > `httpx` (4倍) > `requests` (3倍)
 - 🎯 **易用性**: `nb_aiohttp` = `requests` > `httpx` > 原生 `aiohttp`
+
 
 ### 5.3 代码对比
 
@@ -630,6 +633,9 @@ except Exception as e:
 
 [![pZCRiPe.png](https://s21.ax1x.com/2025/11/13/pZCRiPe.png)](https://imgchr.com/i/pZCRiPe)
 
+### 20.1.0 benchmark环境  
+win11 + python3.9 + amd r7 5800  
+
 ### 20.1.1 实测对比依赖的三方包说明
 
 - pip install nb_libs   
@@ -728,7 +734,7 @@ nb_http_client 性能强悍是因为基于我的 万能对象池 universal_objec
 ### 20.11 有的人不做测试信口开河乱说 python 性能
 
 - 有的人压根不做测试，说 python 每秒可以请求 2万次 http服务，（不启动多进程，只开协程或线程情况下），简直是信口开河，写个benchmark测试很难吗？   
-- python之父要是听到你把python玩得这么厉害，他要尊称你一声亲爹了，让你来做python之爷爷，以后python 内核性能升级靠你了。
+- python之父要是听到你把python玩得这么厉害，他要尊称你一声亲爹了，`Guido van Rossum` 对你说你行你来，让你来做python之爷爷，以后python 内核性能升级靠你了。
 
 - 只要你不用我开发的 nb_http_client ，在单进程情况下，你每秒请求次数破1000都难，还想破20000，离了个大谱。
 
