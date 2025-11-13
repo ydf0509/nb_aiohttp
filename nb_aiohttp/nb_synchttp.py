@@ -10,6 +10,7 @@ class NbSyncHttpClient:
         self.loop = asyncio.new_event_loop()
         # asyncio.set_event_loop(self.loop)
         self._has_run_forever = False
+        self.run_forever(daemon=True)
 
     def run_forever(self,daemon=False):
         if self._has_run_forever:
