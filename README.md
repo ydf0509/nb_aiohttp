@@ -626,13 +626,11 @@ except Exception as e:
 
 
 
-
-
 ## 20 各种三方包的http客户端每请求 10000次 http的 耗时
 
 [![pZCRiPe.png](https://s21.ax1x.com/2025/11/13/pZCRiPe.png)](https://imgchr.com/i/pZCRiPe)
 
-### 20.1 实测对比依赖的三方包说明
+### 20.1.1 实测对比依赖的三方包说明
 
 - pip install nb_libs   
 thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，通过当前进程cpu使用率的打印，让你清清楚楚到底是服务端性能不行还是客户端性能不行？让你清清楚楚知道是客户端cpu达到100%了，所以请求次数无法往上突破
@@ -642,6 +640,18 @@ thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，�
 
 - pip install  threadpool_executor_shrink_able
  同步并发池，主要是有界队列，也可以用 concurrent.futures.ThreadPoolExecutor ，但是它是无界队列，。
+
+### 20.1.2 运行 benchmark 说明
+
+- 先启动 benchmark/fastapi_server1.py 和 benchmark/fastapi_server2.py fastapi服务端（启动2个脚本是保障服务端性能不会成为压测瓶颈，自带cpu使用率打印，可以证明。）
+
+- 再逐个测试启动 
+  - benchmark/req_aiohttp.py 
+  - benchmark/req_httpx.py 
+  - benchmark/req_nb_aiohttp.py 
+  - benchmark/req_nb_httpclient.py 
+  - benchmark/req_nb_synchttp.py 
+  - benchmark/req_requests.py
 
 ### 20.2 通过代码实测 benchmark
 
@@ -659,12 +669,12 @@ thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，�
 第 11000 次 响应时间：  10:37:22 {"message":"欢迎来到aio1 示例 API!"}  
 
 #### 20.2.2 httpx.AsyncClient()
-- 耗时50秒    
+- 耗时50秒   
 第 1000 次 响应时间：  10:44:17 {"message":"欢迎来到aio1 示例 API!"}
 第 11000 次 响应时间：  10:45:07 {"message":"欢迎来到aio1 示例 API!"}
 
 #### 20.2.3 nb_aiohttp.NbAioHttpClient
-- 耗时13秒   
+- 耗时13秒  
 第 1000 次 响应时间： 10:58:32 {"message":"欢迎来到aio1 示例 API!"}
 第 11000 次 响应时间： 10:58:45 {"message":"欢迎来到aio1 示例 API!"} 
 
@@ -674,12 +684,12 @@ thread_show_process_cpu_usage 需要用这个函数监控当前进程的cpu，�
 第 12000 次 响应时间：  10:35:05 {"message":"欢迎来到aio1 示例 API!"} 
 
 #### 20.2.5 nb_aiohttp.NbSyncHttpClient
-- 耗时 15秒     
+- 耗时 15秒   
 第 20000 次 响应时间：  10:29:20 {"message":"欢迎来到aio1 示例 API!"}   
 第 30000 次 响应时间：  10:29:35 {"message":"欢迎来到aio1 示例 API!"}  
 
 #### 20.2.6 nb_http_client.ObjectPool
-- 耗时4秒    
+- 耗时4秒   
 第 11000 次 响应时间： 11:07:49 {"message":"欢迎来到aio1 示例 API!"} 
 第 21000 次 响应时间： 11:07:53 {"message":"欢迎来到aio1 示例 API!"}
 
@@ -714,12 +724,16 @@ nb_http_client 性能强悍是因为基于我的 万能对象池 universal_objec
 - httpx使用比aiohttp方便
 - aiohttp 性能吊打 httpx
   
+
 ### 20.11 有的人不做测试信口开河乱说 python 性能
 
 - 有的人压根不做测试，说 python 每秒可以请求 2万次 http服务，（不启动多进程，只开协程或线程情况下），简直是信口开河，写个benchmark测试很难吗？   
 - python之父要是听到你把python玩得这么厉害，他要尊称你一声亲爹了，让你来做python之爷爷，以后python 内核性能升级靠你了。
 
 - 只要你不用我开发的 nb_http_client ，在单进程情况下，你每秒请求次数破1000都难，还想破20000，离了个大谱。
+
+
+
 
 
 ## 31. 🙏 致谢
